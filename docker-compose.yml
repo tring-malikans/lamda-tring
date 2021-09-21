@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  lambda-fastapi-prod:
+    build:
+      context: .
+      dockerfile: ./compose/prod/Dockerfile
+    image: 284263424126.dkr.ecr.us-east-2.amazonaws.com/lambda-fastapi:latest
+    container_name: lambda-fastapi-prod
+    ports:
+      - 8000:8080
+
+  lambda-fastapi-dev:
+    build:
+      context: .
+      dockerfile: ./compose/dev/Dockerfile
+    image: lambda-fastapi-dev:latest
+    container_name: lambda-fastapi-dev
+    volumes:
+      - ./app:/usr/app
+    ports:
+      - 8000:8000
+
+# docker push 284263424126.dkr.ecr.us-east-2.amazonaws.com/lambda-fastapi:latest
+# aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 284263424126.dkr.ecr.us-east-2.amazonaws.com

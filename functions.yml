@@ -1,0 +1,28 @@
+functions:
+  myAwesomeFastAPIFunction:
+    image: 284263424126.dkr.ecr.us-east-2.amazonaws.com/lambda-fastapi@sha256:76266eed4fb8eb661a8f2abb4bf32c74c61f6486b46f8b72f5f3024654fa16ae
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
+      - http:
+          path: api/buy/{account}/{coin}/{pair}
+          method: any
+          cors: true
+      - http:
+          path: api/sell/{account}/{coin}/{pair}
+          method: any
+          cors: true
+      - http:
+          path: users/
+          method: any
+          cors: true
+      - http:
+          path: users/getone/{_id}
+          method: any
+          cors: true
+      - http:
+          path: users/{_id}
+          method: any
+          cors: true
